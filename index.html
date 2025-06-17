@@ -292,8 +292,8 @@
             
             <form id="setupForm">
                 <div class="form-group">
-                    <label for="gistId">Gist ID</label>
-                    <input type="text" id="gistId" placeholder="例: a1b2c3d4e5f6..." required>
+                    <label for="gistId">Gist ID（任意）</label>
+                    <input type="text" id="gistId" placeholder="例: a1b2c3d4e5f6...">
                     <small>新規作成の場合は空欄のまま「保存」をクリック</small>
                 </div>
                 
@@ -453,6 +453,8 @@
                 }
             } catch (error) {
                 showSyncStatus('error', 'エラー: ' + error.message);
+                console.error('Gist読み込みエラー詳細:', error);
+                alert('Gist読み込みエラー\n\n考えられる原因：\n1. Gist IDが間違っている\n2. Gistが削除されている\n3. インターネット接続の問題\n\n詳細: ' + error.message);
                 // ローカルデータを使用
                 transactions = JSON.parse(localStorage.getItem('kakeibo_transactions') || '[]');
             }
